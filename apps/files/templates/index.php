@@ -1,7 +1,6 @@
 <!--[if IE 8]><style>input[type="checkbox"]{padding:0;}table td{position:static !important;}</style><![endif]-->
 <div id="controls">
-	<?php print_unescaped($_['breadcrumb']); ?>
-		<div class="actions creatable <?php if (!$_['isCreatable']):?>hidden<?php endif; ?> <?php if (isset($_['files']) and count($_['files'])==0):?>emptyfolder<?php endif; ?>">
+		<div class="actions creatable hidden">
 			<div id="new" class="button">
 				<a><?php p($l->t('New'));?></a>
 				<ul>
@@ -49,7 +48,7 @@
 			</div>
 		</div>
 		<div id="file_action_panel"></div>
-		<div class="notCreatable notPublic <?php if ($_['isCreatable'] and !$_['isPublic'] ):?>hidden<?php endif; ?>">
+		<div class="notCreatable notPublic hidden">
 			<div class="actions"><input type="button" disabled value="<?php p($l->t('You don’t have write permissions here.'))?>"></div>
 		</div>
 	<input type="hidden" name="permissions" value="<?php p($_['permissions']); ?>" id="permissions">
@@ -98,7 +97,6 @@
 		</tr>
 	</thead>
 	<tbody id="fileList">
-		<?php print_unescaped($_['fileList']); ?>
 	</tbody>
 </table>
 <div id="editor"></div>
