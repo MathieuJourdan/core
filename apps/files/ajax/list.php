@@ -20,6 +20,8 @@ $doBreadcrumb = isset($_GET['breadcrumb']);
 $data = array();
 $baseUrl = OCP\Util::linkTo('files', 'index.php') . '?dir=';
 
+$permissions = \OCA\files\lib\Helper::getDirPermissions($dir);
+
 // Make breadcrumb
 if($doBreadcrumb) {
 	$breadcrumb = \OCA\files\lib\Helper::makeBreadcrumb($dir);
@@ -39,5 +41,6 @@ $list->assign('files', $files, false);
 $list->assign('baseURL', $baseUrl, false);
 $list->assign('downloadURL', OCP\Util::linkToRoute('download', array('file' => '/')));
 $data['files'] = $list->fetchPage();
+$data['permissions'] = $permissions;
 
 OCP\JSON::success(array('data' => $data));

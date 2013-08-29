@@ -215,6 +215,10 @@ var FileList={
 			return;
 		}
 
+		if (result.data.permissions){
+			FileList.setDirectoryPermissions(result.data.permissions);
+		}
+
 		if(typeof(result.data.breadcrumb) != 'undefined'){
 			$controls.find('.crumb').remove();
 			$controls.prepend(result.data.breadcrumb);
@@ -230,6 +234,12 @@ var FileList={
 		}
 
 		FileList.update(result.data.files);
+	},
+	setDirectoryPermissions: function(permissions){
+		var isCreatable = (permissions & OC.PERMISSION_CREATE) !== 0;
+		$('#permissions').val(permissions);
+		$('.creatable').toggleClass('hidden', !isCreatable);
+		$('.notCreatable').toggleClass('hidden', isCreatable);
 	},
 	remove:function(name){
 		$('tr').filterAttr('data-file',name).find('td.filename').draggable('destroy');
